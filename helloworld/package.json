@@ -1,0 +1,88 @@
+{
+  "name": "QuickNotes",
+  "displayName": "QuickNotes",
+  "description": "QuickNotes",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "QuickNotes.",
+        "title": "QuickNotes"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "helloworld-container",
+          "title": "即刻笔记",
+          "icon": "test.svg"
+        }
+      ]
+    },
+    "views": {
+      "helloworld-container": [
+        {
+          "id": "helloworld-view",
+          "type": "webview",
+          "name": "即刻笔记"
+        },
+        {
+          "id": "helloworld-view-history",
+          "name": "即刻笔记历史"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "helloworld-container",
+        "contents": "No node packages found [learn more](https://www.npmjs.com/).\n[Add Packages](command:package-outline.addEntry)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceScheme == file && editorHasSelection && selectionLengthIsGreaterThanZero",
+          "command": "nihao2",
+          "group": "QuickNotes"
+        }
+      ]
+    },
+    "contextkey": [
+      {
+        "key": "editorHasSelection",
+        "type": "boolean"
+      },
+      {
+        "key": "selectionLengthIsGreaterThanZero",
+        "type": "expression",
+        "description": "Check if the length of the selected text is greater than zero",
+        "expression": "selectionIsEmpty != true"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^18.19.19",
+    "@types/vscode": "^1.86.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  }
+}
